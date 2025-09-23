@@ -1,8 +1,11 @@
-import { SignedIn, SignInButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import React from "react";
+import { checkUser } from "../lib/checkUser";
 
-export default function Navbar() {
+export default async function Navbar() {
+  const user = await checkUser();
+
   return (
     <nav className="">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -30,11 +33,13 @@ export default function Navbar() {
             About
           </Link>
 
-          <SignInButton>
-            <button className="w-full sm:w-auto bg-gradient-to-r from-slate-300 via-gray-600 to-slate-400 hover:from-blue-600 hover:via-gray-600 hover:to-blue-600 text-white sm:px-4 sm:py-2 px-3 py-1 text-sm sm:text-md rounded-md font-medium cursor-pointer">
-              Sign In
-            </button>
-          </SignInButton>
+          <SignedOut>
+            <SignInButton>
+              <button className="w-full sm:w-auto bg-gradient-to-r from-slate-300 via-gray-600 to-slate-400 hover:from-blue-600 hover:via-gray-600 hover:to-blue-600 text-white sm:px-4 sm:py-2 px-3 py-1 text-sm sm:text-md rounded-md font-medium cursor-pointer">
+                Sign In
+              </button>
+            </SignInButton>
+          </SignedOut>
 
           <SignedIn>
             <UserButton />
