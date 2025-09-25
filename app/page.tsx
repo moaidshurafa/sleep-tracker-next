@@ -5,6 +5,7 @@ import AddNewRecord from "@/components/AddNewRecord";
 import React from "react";
 import RecordChart from "@/components/RecordChart";
 import AverageSleep from "@/components/AverageSleep";
+import BestWorstSleep from "@/components/BestWorstSleep";
 
 export default async function HomePage() {
   const user = await currentUser();
@@ -57,6 +58,7 @@ export default async function HomePage() {
           {/* Placeholder for RecordStats, RecentRecord, and Insights */}
           <RecordChart />
           <AverageSleep />
+          <BestWorstSleep />
    
         </div>
       </div>
